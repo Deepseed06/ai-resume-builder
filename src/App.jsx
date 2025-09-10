@@ -8,6 +8,7 @@ import Header from "./components/Header"
 import Dashboard from "./pages/dashboard/Dashboard"
 import EditResume from "./pages/dashboard/resume/[resumeId]/edit"
 import { Toaster } from "sonner"
+import ViewResume from "./my-resume/[resumeId]/view"
 
 function App() {
   const navigate = useNavigate()
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/my-resume/:resumeId/view" element={<ViewResume/>} />
         <Route path="/dashboard/resume/:resumeId/edit" element={<EditResume/>} />
       </Routes>
     </div>

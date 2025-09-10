@@ -23,9 +23,10 @@ function Experience() {
     const {resumeInfo,setResumeInfo}=useContext(ResumeInfoContext);
     const params=useParams();
     const [loading,setLoading]=useState(false);
+    console.log(resumeInfo)
 
     useEffect(()=>{
-        resumeInfo?.Experience.length>0&&setExperinceList(resumeInfo?.Experience)
+        resumeInfo?.experience.length>0&&setExperinceList(resumeInfo?.experience)
         
     },[])
 
@@ -83,6 +84,7 @@ function Experience() {
         })
 
     }
+    console.log(experinceList)
   return (
     <div>
         <div className='p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10'>

@@ -7,6 +7,7 @@ import { Brain, LoaderCircle } from 'lucide-react';
 import GlobalApi from './../../../../../../service/GlobalApi';
 // import { toast } from 'sonner';
 import { AIChatSession } from './../../../../../../service/AIModal';
+import { toast } from 'sonner';
 
 const prompt="Job Title: {jobTitle} , Depends on job title give me list of  summery for 3 experience level, Mid Level and Freasher level in 3 -4 lines in array format, With summery and experience_level Field in JSON Format"
 function Summary({enabledNext}) {
@@ -21,6 +22,8 @@ function Summary({enabledNext}) {
             summary:summary
         })
     },[summary])
+
+    console.log(aiGeneratedSummaryList)
 
     const GenerateSummeryFromAI=async()=>{
         setLoading(true)
@@ -81,7 +84,7 @@ function Summary({enabledNext}) {
         
        {aiGeneratedSummaryList&& <div className='my-5'>
             <h2 className='font-bold text-lg'>Suggestions</h2>
-            {aiGeneratedSummaryList?.map((item,index)=>(
+            {aiGeneratedSummaryList.summaries.map((item,index)=>(
                 <div key={index} 
                 onClick={()=>setSummary(item?.summary)}
                 className='p-5 shadow-lg my-4 rounded-lg cursor-pointer'>
