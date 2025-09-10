@@ -28,7 +28,6 @@ function App() {
     </div>
   ) : (
     <div>
-      
     <Routes>
       <Route path='/' element={<LandingPage/>} />
       <Route path='/auth/sign-in' element={<SignInPage/>} />
