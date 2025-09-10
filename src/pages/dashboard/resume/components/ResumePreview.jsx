@@ -4,7 +4,7 @@ import ExperiencePreview from './preview/ExperiencePreview'
 import EducationalPreview from './preview/EducationalPreview'
 import SkillsPreview from './preview/SkillsPreview'
 import SummaryPreview from './preview/SummaryPreview'
-import PersonalDetailPreview from './Preview/PersonalDetailPreview'
+import PersonalDetailPreview from './preview/PersonalDetailPreview'
 function ResumePreview() {
 
     const {resumeInfo,setResumeInfo}=useContext(ResumeInfoContext)
