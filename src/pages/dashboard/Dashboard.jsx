@@ -1,48 +1,45 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AddResume from './AddResume'
 import { useUser } from '@clerk/clerk-react'
-import GlobalApi from '../../../service/GlobalApi'
-import ResumeItem from '../../components/ResumeItem'
+import GlobalApi from './../../../service/GlobalApi';
+import ResumeCardItem from './../../components/ResumeItem';
 
-const Dashboard = () => {
-  const {user} = useUser()
+function Dashboard() {
 
-  const [resumeList, setResumeList] = React.useState([])
-
-  const getResumeList = () => {
-    // Call the API to get the list of resumes for the user
-    GlobalApi.getUserResumes(user?.primaryEmailAddress?.emailAddress).then((res) => {
-      console.log(res.data.data)
-      if(res){
-        setResumeList(res.data.data)
-        // setLoading(false)
-      }
-      // Handle success response
-    }).catch((err) => {
-      // setLoading(false)
-      console.log(err)
-      // Handle error response
+  const {user}=useUser();
+  const [resumeList,setResumeList]=useState([]);
+  useEffect(()=>{
+    user&&GetResumesList()
+  },[user])
+console.log(resumeList)
+  /**
+   * Used to Get Users Resume List
+   */
+  const GetResumesList=()=>{
+    GlobalApi.getUserResumes(user?.primaryEmailAddress?.emailAddress)
+    .then(resp=>{
+      console.log(resp.data.data)
+      setResumeList(resp.data.data);
     })
   }
-  React.useEffect(() => {
-    getResumeList()
-  }, [user])
-
   return (
     <div className='p-10 md:px-20 lg:px-32'>
       <h2 className='font-bold text-3xl'>My Resume</h2>
-
-      <p>Start Creating AI resume for your next Job role</p>
-
-      <div className='grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5'>
+      <p>Start Creating AI resume to your next Job role</p>
+      <div className='grid grid-cols-2 
+      md:grid-cols-3 lg:grid-cols-4 gap-5
+      mt-10
+      '>
         <AddResume/>
-        {
-          resumeList&&resumeList.map((resume,index) => (
-           <ResumeItem key={index} resume={resume} getResumeList={getResumeList} />
-          ))
+        {resumeList?.length>0?resumeList?.map((resume,index)=>(
+          <ResumeCardItem resume={resume} key={index} refreshData={GetResumesList} />
+        )):
+        [1,2,3,4].map((item,index)=>(
+          <div className='h-[280px] rounded-lg bg-slate-200 animate-pulse'>
+          </div>
+        ))
         }
       </div>
-
     </div>
   )
 }

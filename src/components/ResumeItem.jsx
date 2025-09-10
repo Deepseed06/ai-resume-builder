@@ -5,6 +5,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -16,11 +18,12 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
+  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import GlobalApi from './../../service/GlobalApi'
 import { toast } from 'sonner'
 
-function ResumeItem({resume,refreshData}) {
+function ResumeCardItem({resume,refreshData}) {
 
   const navigation=useNavigate();
   const [openAlert,setOpenAlert]=useState(false);
@@ -70,7 +73,7 @@ function ResumeItem({resume,refreshData}) {
          
           <DropdownMenu>
           <DropdownMenuTrigger>
-          <MoreVertical className='h-4 w-4 cursor-pointer'/>
+          <MoreVertical className='h-4 w-4 text-black cursor-pointer'/>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
            
@@ -108,4 +111,4 @@ function ResumeItem({resume,refreshData}) {
   )
 }
 
-export default ResumeItem
+export default ResumeCardItem
